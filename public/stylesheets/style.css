@@ -203,6 +203,9 @@ ul li.list-header[data-color="platinum"] {
 ul li.list-header[data-color="diamond"] {
   background-color: #37377b;
 }
+ul li.list-header[data-color="unrank"] {
+  background-color: #6d377b;
+}
 ul li.list-header img {
   margin: 0 auto !important;
 }

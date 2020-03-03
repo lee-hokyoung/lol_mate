@@ -14,5 +14,8 @@ router.get("/team", (req, res) => {
 router.get("/qna", (req, res) => {
   res.render("qna", { title: "문의방법" });
 });
+router.get("/status", (req, res) => {
+  res.render("status", { title: "작업현황" });
+});
 
 module.exports = router;

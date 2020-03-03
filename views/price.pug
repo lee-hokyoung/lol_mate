@@ -72,7 +72,13 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 6,500원
+                    ul.list-group
+                      li.list-group-item 
+                        .bg-color(data-color="diamond") 골드 2 ~ 4
+                        p 6,500원
+                      li.list-group-item 
+                        .bg-color(data-color="diamond") 골드 1
+                        p 7,500원
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -119,13 +125,13 @@ block content
                         p 13,000원
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 3
-                        p 17,000원
+                        p 15,000원
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 2
-                        p 22,000원
+                        p 19,000원
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 1
-                        p.text-nowrap 2.7만~협의
+                        p.text-nowrap 23,000원
               li.list-group-item
                 .row.m-0.w-100
                   .col-md-5.col-4.m-0#master
@@ -153,11 +159,11 @@ block content
                       p IRON
                       .bg-color(data-color='iron') 아이언
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
-                    p 7,000원
+                    p 8,500원
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -167,11 +173,11 @@ block content
                       p BRONZE
                       .bg-color(data-color='bronze') 브론즈
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
-                    p 7,000원
+                    p 8,500원
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -181,11 +187,11 @@ block content
                       p SILVER
                       .bg-color(data-color='silver') 실버
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
-                    p 7,000원
+                    p 8,500원
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -195,11 +201,11 @@ block content
                       p GOLD
                       .bg-color(data-color='gold') 골드
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
-                    p 9,000원
+                    p 10,000원
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -209,23 +215,23 @@ block content
                       p PLATINUM
                       .bg-color(data-color='platinum') 플래티넘
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
                     ul.list-group
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 4
-                        p 10,000원
+                        p 14,000원
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 3
-                        p 10,000원
+                        p 14,000원
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 2
-                        p 12,000원
+                        p 16,000원
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 1
-                        p 14,000원
+                        p 17,000원
 
               li.list-group-item
                 .row.w-100.m-0
@@ -236,23 +242,24 @@ block content
                       p DIAMOND
                       .bg-color(data-color='diamond') 다이아몬드
                   .col-3
-                    p 승리보장제 강의 
+                    p 승수보장제 강의 
                       br
                       strong 1판
                   .col-3
-                    ul.list-group
-                      li.list-group-item 
-                        .bg-color(data-color="diamond") 다이아 4
-                        p 16,000원
-                      li.list-group-item 
-                        .bg-color(data-color="diamond") 다이아 3
-                        p 상담문의
-                      li.list-group-item 
-                        .bg-color(data-color="diamond") 다이아 2
-                        p 상담문의
-                      li.list-group-item 
-                        .bg-color(data-color="diamond") 다이아 1
-                        p 상담문의
+                    p 상담문의
+                    //- ul.list-group
+                    //-   li.list-group-item 
+                    //-     .bg-color(data-color="diamond") 다이아 4
+                    //-     p 16,000원
+                    //-   li.list-group-item 
+                    //-     .bg-color(data-color="diamond") 다이아 3
+                    //-     p 상담문의
+                    //-   li.list-group-item 
+                    //-     .bg-color(data-color="diamond") 다이아 2
+                    //-     p 상담문의
+                    //-   li.list-group-item 
+                    //-     .bg-color(data-color="diamond") 다이아 1
+                    //-     p 상담문의
         .row
           .col-md-8.ml-auto.mr-auto
             h2.title 배치고사 강의
@@ -412,6 +419,30 @@ block content
                 li.list-group-item.flex-column.bg-white
                   p 시간당
                   h2 25,000원
+            .col-md-4
+              ul.list-group
+                li.list-group-item.list-header(data-color="unrank")
+                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/gold_v.png')
+                  //- .mx-auto.d-flex.flex-column
+                  //-   h3.text-white.mx-auto.m-0 GOLD
+                  //-   h5.text-white.m-0 다이아몬드
+                li.list-group-item.flex-column.bg-white
+                  p 언랭배치 + 골드보장
+                  h2 200,000원
+            .col-md-4
+              ul.list-group
+                li.list-group-item.list-header(data-color="unrank")
+                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/platinum_v.png')
+                li.list-group-item.flex-column.bg-white
+                  p 언랭배치 + 플레보장
+                  h2 350,000원
+            .col-md-4
+              ul.list-group
+                li.list-group-item.list-header(data-color="unrank")
+                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/diamond_v.png')
+                li.list-group-item.flex-column.bg-white
+                  p 언랭배치 + 다이아보장
+                  h2 550,000원
           .row
             .col-md-10.mx-auto
               h4.text-danger.text-center (강사분들의 노하우와 비법을 아끼지 않고 최선을 다해 최고로 만들어 드리겠습니다.)
