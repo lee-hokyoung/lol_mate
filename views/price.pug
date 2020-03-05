@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .page-header#price_back(data-parallax="true" style="margin-top:70px;")
+  #price_back.page-header.page-back(data-parallax="true")
     .container
       .row
         .col-md-12.text-center
@@ -104,7 +104,7 @@ block content
                         p 9,000원
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 1
-                        p 10,000원
+                        p 11,000원
 
               li.list-group-item
                 .row.w-100.m-0
@@ -128,10 +128,10 @@ block content
                         p 15,000원
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 2
-                        p 19,000원
+                        p 18,000원
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 1
-                        p.text-nowrap 23,000원
+                        p.text-nowrap 22,000원
               li.list-group-item
                 .row.m-0.w-100
                   .col-md-5.col-4.m-0#master
@@ -422,24 +422,30 @@ block content
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
-                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/gold_v.png')
-                  //- .mx-auto.d-flex.flex-column
-                  //-   h3.text-white.mx-auto.m-0 GOLD
-                  //-   h5.text-white.m-0 다이아몬드
+                  .d-flex.justify-content.between.arrow-wrap
+                    img(src='/assets/img/tier-icons/base-icons/provisional.png')
+                    img(src='/assets/img/svgs/right-arrow.svg')
+                    img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/gold_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 골드보장
                   h2 200,000원
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
-                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/platinum_v.png')
+                  .d-flex.justify-content.between.arrow-wrap
+                    img(src='/assets/img/tier-icons/base-icons/provisional.png')
+                    img(src='/assets/img/svgs/right-arrow.svg')
+                    img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/platinum_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 플레보장
                   h2 350,000원
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
-                  img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/diamond_v.png')
+                  .d-flex.justify-content.between.arrow-wrap
+                    img(src='/assets/img/tier-icons/base-icons/provisional.png')
+                    img(src='/assets/img/svgs/right-arrow.svg')
+                    img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/diamond_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 다이아보장
                   h2 550,000원

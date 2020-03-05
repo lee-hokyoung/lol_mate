@@ -156,6 +156,7 @@ p,
 #main_back {
   /* background: url("/assets/img/lol_main.jpg");
   background-size: cover; */
+  /* background: url("/assets/img/new_girl_main.jpg") no-repeat center; */
   background: url("/assets/img/girls4.jpg") no-repeat center;
   margin-top: 70px;
   /* background-color: #413a42; */
@@ -186,7 +187,7 @@ p,
   font-size: 1.2rem;
 }
 .page-header {
-  max-width: 1200px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   background-position-y: 0px;
@@ -206,6 +207,45 @@ ul li.list-header[data-color="diamond"] {
 ul li.list-header[data-color="unrank"] {
   background-color: #6d377b;
 }
+ul li.list-header[data-color="unrank"] img {
+  margin-right: 0 !important;
+  width: 42%;
+}
+ul li.list-header .arrow-wrap {
+  height: 170px;
+  margin: 0;
+  align-items: center;
+}
+ul li.list-header .arrow-wrap img:nth-child(1) {
+  width: 120px;
+  height: 120px;
+}
+ul li.list-header .arrow-wrap img:nth-child(2) {
+  width: 70px;
+  height: 70px;
+}
+ul li.list-header .arrow-wrap img:nth-child(3) {
+  width: 150px;
+  height: 150px;
+}
+/* ul li.list-header[data-color="unrank"]:before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  opacity: 0.8;
+  background-image: url(/assets/img/tier-icons/base-icons/provisional.png);
+  background-size: 130px 130px;
+  background-position: 10px -10px;
+  width: 130px;
+  height: 130px;
+} */
+/* ul li.list-header[data-color="unrank"]:after {
+  content: url(/assets/img/svgs/right-arrow.svg);
+  position: absolute;
+  width: 70px;
+  left: 37%;
+  opacity: 0.7;
+} */
 ul li.list-header img {
   margin: 0 auto !important;
 }
@@ -249,7 +289,14 @@ ul li.flex-column p {
 footer ul li a {
   font-size: 16px;
 }
+.page-header.page-back {
+  background-repeat: no-repeat;
+  margin-top: 70px;
+}
 @media (min-width: 320px) and (max-width: 480px) {
+  .page-header.page-back {
+    background-size: cover;
+  }
   #main_back {
     background-size: cover;
     margin-top: 70px;
