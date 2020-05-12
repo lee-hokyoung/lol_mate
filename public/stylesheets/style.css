@@ -1,7 +1,6 @@
 @font-face {
   font-family: "CookieRunOTF-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -156,8 +155,10 @@ p,
 #main_back {
   /* background: url("/assets/img/lol_main.jpg");
   background-size: cover; */
-  /* background: url("/assets/img/new_girl_main.jpg") no-repeat center; */
-  background: url("/assets/img/girls4.jpg") no-repeat center;
+  background-image: url("/assets/img/girls4.jpg");
+  /* background-image: url("/assets/img/lol_main.png"); */
+  background-repeat: no-repeat;
+  background-size: 800px;
   margin-top: 70px;
   /* background-color: #413a42; */
   background-position-y: -110px;

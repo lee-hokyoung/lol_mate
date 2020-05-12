@@ -1,0 +1,18 @@
+extends layout
+block append_css
+  link(href='/public_css/review.css', rel='stylesheet')
+  link(href='/nm/summernote/dist/summernote.min.css', rel='stylesheet')
+  //- link(href='/nm/summernote/dist/summernote-bs4.min.css', rel='stylesheet')
+block content
+  #review_back.page-header.page-back(data-parallax="true")
+    .container
+      .row
+        .col-md-12.text-center
+          h1.title 후기 게시판
+  .main.main-raised
+    .container
+      .section
+        #summernote
+block append_js
+  script(src="/nm/summernote/dist/summernote.min.js", type='text/javascript')
+  script(src='/public_js/review.js', type='text/javascript')

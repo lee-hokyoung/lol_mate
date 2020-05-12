@@ -5,3 +5,4 @@ bin
 ecosystem.config.js
 yarn.lock
 package.json
+.env
