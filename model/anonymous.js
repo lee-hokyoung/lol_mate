@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const anonySchema = new Schema({
   title: String,
   writer: String,
+  email: String,
   content: String,
-  pw: String,
+  password: String,
   created_at: { type: Date, default: Date.now },
 });
 module.exports = mongoose.model("Anonymous", anonySchema, "anonymous");
