@@ -1,0 +1,94 @@
+extends layout
+block append_css
+  link(href='/public_css/review.css', rel='stylesheet')
+block content
+  - var metadata = list[0].metadata[0];
+  - var total = metadata ? metadata.total : 0;
+  - var page = metadata ? metadata.page : 1;
+  - var limit = metadata ? metadata.limit : 10;
+  - var page_size = Math.ceil(total / limit);
+  - var page_group_max = 10;
+  - var curr_page_group = Math.ceil(page / page_group_max);
+  - var start_page = (curr_page_group - 1) * page_group_max + 1;
+  - var end_page = curr_page_group * page_group_max ;
+  #review_back.page-header.page-back(data-parallax="true")
+    .container
+      .row
+        .col-md-12.text-center
+          h1.title 후기 게시판
+  .main.main-raised
+    .container
+      .row.section
+        .col-md-12.mx-auto
+          table.table
+            colgroup
+              col(width='100' title='No')
+              col(width='auto' title='제목')
+              col(width='200' title='글쓴이')
+              col(width='80' title='조회수')
+              col(width='200' title='작성일시')
+            thead
+              th No
+              th 제목
+              th 글쓴이
+              th 조회수
+              th 작성일시
+            tbody
+              - var rownum = (page - 1) * limit;
+              if(total > 0)
+                each row in list[0].data
+                  - var date = new Date(row.created_at)
+                  tr
+                    td #{++rownum}
+                    td 
+                      a(href='/review/read/' + row._id) #{row.title}
+                    td #{row.writer}
+                    td #{row.hitCount}
+                    td #{date.toLocaleString('ko')}
+              else
+                tr
+                  td(colspan='4') 등록된 글이 없습니다.
+          .d-flex.justify-content-between
+            form(method='POST', action='/review/list')
+              .input-group
+                input.form-control(type='text', name='searchText', value=searchText)
+                .input-group-append
+                  button.input-group-text(name='btnSearch') 검색
+            a.mb-auto(href='/review/register', data-role='button') 글쓰기
+          .page-wrap
+            nav(aria-label="Page")
+              ul.pagination.justify-content-center
+                if(start_page > 1)
+                  li.page-item
+                    a.page-link(href="#", data-page=start_page - 1,  aria-label="Previous")
+                      span(aria-hidden="true") &laquo;
+                      span.sr-only Previous
+                - var p = start_page - 1;
+                - var last = end_page < page_size ? end_page : page_size
+                while p < last
+                  li.page-item(class=page==++p?'active':'')
+                    a.page-link(href="#", data-page=p) !{p}
+                if(end_page < page_size)
+                  li.page-item
+                    a.page-link(href="#", data-page=end_page + 1, aria-label="Next")
+                      span(aria-hidden="true") &raquo;
+                      span.sr-only Next
+block append_js
+  script.
+    //  페이지 클릭 이벤트
+    document.querySelectorAll("a[data-page]").forEach(function (a) {
+      a.addEventListener("click", function () {
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/review/list';
+        let searchText = document.querySelector('input[name="searchText"]');
+        form.appendChild(searchText);
+        let inpPage = document.createElement('input');
+        inpPage.name = 'page';
+        inpPage.value = this.dataset.page;
+        form.appendChild(inpPage);
+        document.body.appendChild(form);
+        form.submit();
+        console.log(this);
+      });
+    });
