@@ -1,0 +1,47 @@
+extends layout
+block append_css
+  link(href='/public_css/review.css', rel='stylesheet')
+block content
+  #review_back.page-header.page-back(data-parallax="true")
+    .container
+      .row
+        .col-md-12.text-center
+          h1.title 후기 게시판
+  .main.main-raised
+    .container
+      .row.section
+        .col-md-8.mx-auto
+          form(onsubmit='return fnSubmitReview()')
+            .row
+              .col-12
+                - var date = new Date(doc.created_at)
+                h3 #{doc.title}
+                span #{doc.writer} / 
+                span 조회수 #{doc.hitCount} / 
+                span #{date.toLocaleString('ko')}
+              .col-md-12.mt-3
+                .form-group
+                  #read_content
+            .d-flex.justify-content-between
+              a.btn.btn-link.px-0(href='/review/list') < 목록으로
+              .d-flex.justify-content-start
+                button.btn.btn-link.btn-danger(type='button', data-toggle='modal', data-target='#modalPw') 삭제하기
+                button.btn.btn-link.btn-warning(type='button', data-toggle='modal', data-target='#modalPw') 수정하기
+  #modalPw.modal.fade(tabindex="-1" role="dialog" aria-labelledby="pwLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          p.title 비밀번호 입력
+        .modal-body
+          .form-group
+            label 비밀번호
+            input.form-control(type='password', name='password')
+        .modal-footer
+          //- button.btn.btn-danger(type='button', data-dismiss='modal') 취소
+          button.btn.btn-primary(type='button', name='btnChkPw') 확인
+
+block append_js
+  script(src="/nm/ckeditor4/ckeditor.js", type='text/javascript')
+  script(src='/public_js/review.js', type='text/javascript')
+  script.
+    let content = !{JSON.stringify(doc.content)}

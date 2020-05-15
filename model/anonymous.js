@@ -7,6 +7,7 @@ const anonySchema = new Schema({
   email: String,
   content: String,
   password: String,
+  hitCount: { type: Number, default: 0 },
   created_at: { type: Date, default: Date.now },
 });
 module.exports = mongoose.model("Anonymous", anonySchema, "anonymous");

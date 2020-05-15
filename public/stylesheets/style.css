@@ -20,6 +20,11 @@ h6,
 span,
 a,
 p,
+button,
+table th,
+table td,
+label,
+input,
 .title {
   font-family: "CookieRunOTF-Bold", sans-serif;
 }
