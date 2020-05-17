@@ -11,6 +11,7 @@ connect();
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const reviewRouter = require("./routes/review");
+const uploadRouter = require("./routes/upload");
 
 const app = express();
 
@@ -27,21 +28,17 @@ app.use("/images", express.static(path.join(__dirname, "public/images"), { maxAg
 app.use("/nm", express.static(path.join(__dirname, "node_modules"), { maxAge: "30d" }));
 app.use("/public_js", express.static(path.join(__dirname, "public/javascripts"), { maxAge: "0" }));
 app.use("/public_css", express.static(path.join(__dirname, "public/stylesheets"), { maxAge: "0" }));
+app.use("/temps", express.static(path.join(__dirname, "temps")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/review", reviewRouter);
+app.use("/upload", uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
-// robots 검색 엔진 기능 추가
-// app.use("/robots.txt", function(req, res) {
-//   res.type("text/plain");
-//   res.send("User-agent: *\n Allow: /");
-// });
 
 // error handler
 app.use(function (err, req, res, next) {

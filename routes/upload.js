@@ -25,7 +25,7 @@ const upload = multer({
 });
 router.post("/anonymous", upload.single("upload"), (req, res) => {
   let file = req.file;
-  res.json({ uploaded: 1, filename: file.originalname, url: path.join("\\", file.path) });
+  res.json({ uploaded: 1, filename: file.originalname, url: "/" + file.path });
 });
 
 module.exports = router;

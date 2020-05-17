@@ -12,6 +12,7 @@ block content
       .row.section
         .col-md-8.mx-auto
           form(onsubmit='return fnSubmitReview()')
+            input(type='hidden', name='image_url')
             .row
               .col-12
                 .form-group
@@ -21,10 +22,11 @@ block content
                 .form-group
                   label 글쓴이
                   input.form-control(type='text', name='writer')
-              .col-md-6
-                .form-group
-                  label 이메일
-                  input.form-control(type='text', name='email')
+              //- .col-md-6
+              //-   .form-group
+              //-     label 이메일
+              //-     input.form-control(type='text', name='email')
+            .row
               .col-md-6
                 .form-group
                   label 비밀번호

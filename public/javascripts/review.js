@@ -2,7 +2,7 @@ if (CKEDITOR.env.ie && CKEDITOR.env.version < 9) CKEDITOR.tools.enableHtml5Eleme
 
 CKEDITOR.config.height = 300;
 CKEDITOR.config.width = "auto";
-
+CKEDITOR.config.extraPlugins = "image2";
 var initSample = (function () {
   var wysiwygareaAvailable = isWysiwygareaAvailable(),
     isBBCodeBuiltIn = !!CKEDITOR.plugins.get("bbcode");
@@ -11,9 +11,7 @@ var initSample = (function () {
     var editorElement = CKEDITOR.document.getById("editor");
 
     if (isBBCodeBuiltIn) {
-      editorElement.setHtml(
-        "Hello world!\n\n" + "I'm an instance of [url=https://ckeditor.com]CKEditor[/url]."
-      );
+      editorElement.setHtml("Hello world!\n\n" + "I'm an instance of [url=https://ckeditor.com]CKEditor[/url].");
     }
 
     if (wysiwygareaAvailable) {
