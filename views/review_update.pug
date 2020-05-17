@@ -11,17 +11,17 @@ block content
     .container
       .row.section
         .col-md-8.mx-auto
-          form(onsubmit='return fnSubmitReview()')
+          form(onsubmit='return fnSubmitReview("' + doc._id + '")')
             input(type='hidden', name='token')
             .row
               .col-12
                 .form-group
                   label 제목
-                  input.form-control-plaintext(type='text', name='title', value=doc.title)
+                  input.form-control(type='text', name='title', value=doc.title)
               .col-md-6
                 .form-group
                   label 글쓴이
-                  input.form-control-plaintext(type='text', name='writer', value=doc.writer)
+                  input.form-control(type='text', name='writer', value=doc.writer)
               .col-md-6
                 .form-group
                   label 비밀번호
@@ -32,5 +32,9 @@ block content
               button.btn.btn-primary(button='submit') 저장
 
 block append_js
+  script.
+    let content = !{JSON.stringify(doc.content)};
+    console.log('content : ', content);
+    console.log('doc : ', !{JSON.stringify(doc)});
   script(src="/nm/ckeditor4/ckeditor.js", type='text/javascript')
   script(src='/public_js/review_update.js', type='text/javascript')

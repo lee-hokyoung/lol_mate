@@ -9,7 +9,6 @@ var initSample = (function () {
 
   return function () {
     var editorElement = CKEDITOR.document.getById("editor");
-
     if (isBBCodeBuiltIn) {
       editorElement.setHtml(
         "Hello world!\n\n" + "I'm an instance of [url=https://ckeditor.com]CKEditor[/url]."
@@ -34,23 +33,14 @@ var initSample = (function () {
     return !!CKEDITOR.plugins.get("wysiwygarea");
   }
 })();
-
-const read_content = document.querySelector("#read_content");
-if (read_content) {
-  document.addEventListener("DOMContentLoaded", function () {
-    var contentElement = CKEDITOR.document.getById("read_content");
-    contentElement.setHtml(content);
-  });
-} else {
-  initSample();
-}
-
-const fnSubmitReview = function () {
+initSample();
+document.addEventListener("DOMContentLoaded", function () {
+  CKEDITOR.instances.editor.setData(content);
+});
+const fnSubmitReview = function (id) {
   let title = document.querySelector('input[name="title"]');
   let writer = document.querySelector('input[name="writer"]');
-  // let email = document.querySelector('input[name="email"]');
   let password = document.querySelector('input[name="password"]');
-  let password_chk = document.querySelector('input[name="password_chk"]');
   let content = CKEDITOR.instances.editor.getData();
 
   if (title.value === "") {
@@ -63,18 +53,8 @@ const fnSubmitReview = function () {
     writer.focus();
     return false;
   }
-  // if (email.value === "") {
-  //   alert("이메일을 입력해주세요");
-  //   email.focus();
-  //   return false;
-  // }
-  if (password.value === "" || password_chk.value === "") {
+  if (password.value === "") {
     alert("비밀번호를 입력해주세요");
-    password.focus();
-    return false;
-  }
-  if (password.value !== password_chk.value) {
-    alert("입력한 비밀번호가 서로 다릅니다");
     password.focus();
     return false;
   }
@@ -92,16 +72,16 @@ const fnSubmitReview = function () {
       return $(w).find("img").attr("src");
     });
   let formData = {};
+  formData["id"] = id;
   formData["title"] = title.value;
   formData["writer"] = writer.value;
-  // formData["email"] = email.value;
   formData["password"] = password.value;
   formData["content"] = content;
   if (img_urls.length > 0) {
     formData["img_urls"] = img_urls;
   }
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/review/register", true);
+  xhr.open("PATCH", "/review/update", true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
