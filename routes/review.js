@@ -1,6 +1,7 @@
 const express = require("express");
 const Anonymous = require("../model/anonymous");
 const mongoose = require("mongoose");
+const fs = require("fs");
 const router = express.Router();
 
 //  게시판 조회
@@ -47,6 +48,35 @@ router.get("/register", (req, res) => {
 //  글쓰기 등록
 router.post("/register", async (req, res) => {
   try {
+    //  img파일이 있을 경우 temps 폴더에서 upload 폴더로 이동시켜준다.
+    let img_urls = req.body.img_urls;
+    if (img_urls) {
+      let token = img_urls[0].split("\\")[2];
+      for (var i = 0; i < img_urls.length; i++) {
+        let isExist = fs.existsSync("./uploads/" + token);
+        console.log("is exist : ", isExist);
+
+        if (!isExist) {
+          fs.mkdirSync("./uploads/" + token);
+        }
+        fs.rename("./" + img_urls[i], "./" + img_urls[i].replace("temps", "uploads"), (err) => {
+          if (err) {
+            console.error("err : ", err);
+          }
+          console.log("i : ", i);
+        });
+      }
+    }
+    //  content 에서 temps를 upload로 바꿔준다
+    let new_content = req.body.content
+      .split("\n")
+      .map((v) => {
+        if (v.indexOf("<img") > -1) {
+          return v.replace("temps", "uploads");
+        } else return v;
+      })
+      .join("\n");
+    req.body.content = new_content;
     let result = await Anonymous.create(req.body);
     if (result) {
       res.json({ code: 1, message: "등록성공" });
@@ -57,9 +87,73 @@ router.post("/register", async (req, res) => {
     res.json({ code: 0, message: err.message });
   }
 });
+//  글 삭제
 router.delete("/:id", async (req, res) => {
   try {
-    let result = await Anonymous.deleteOne({ _id: mongoose.Types.ObjectId(req.params.id) });
-  } catch (err) {}
+    let doc = await Anonymous.findOne({
+      _id: mongoose.Types.ObjectId(req.params.id),
+      password: req.body.password,
+    });
+    //  content 내에서 url 추출
+    if (doc) {
+      let urls = doc.content
+        .split("\n")
+        .filter((v) => {
+          if (v.indexOf("<img ") > -1) return v;
+        })
+        .map((v) => {
+          return v
+            .split(" ")
+            .filter((w) => {
+              if (w.indexOf("src") > -1) return w;
+            })[0]
+            .replace("src=", "")
+            .replace(/"/g, "");
+        });
+      //  url이 있을 경우 삭제 unlink
+      if (urls.length > 0) {
+        for (let i = 0; i < urls.length; i++) {
+          fs.unlink("." + urls[i], (err) => {
+            if (err) console.error(err);
+          });
+        }
+      }
+      let result = await Anonymous.deleteOne({
+        _id: mongoose.Types.ObjectId(req.params.id),
+        password: req.body.password,
+      });
+      if (result.ok === 1) res.json({ code: 1, message: "삭제되었습니다.", result: result });
+      else res.json({ code: 0, message: "삭제실패! 관리자에게 문의해주세요" });
+    } else {
+      res.json({ code: 0, message: "비밀번호가 틀렸습니다." });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: err.message });
+  }
+});
+//  글 수정(비밀번호 확인 후 해당 글로 리다이렉트)
+router.post("/update", async (req, res) => {
+  try {
+    let doc = await Anonymous.findOne({
+      _id: mongoose.Types.ObjectId(req.body.id),
+      password: req.body.password,
+    });
+    if (doc) {
+      res.json({ code: 1, message: "" });
+    } else {
+      res.json({ code: 0, message: "비밀번호가 틀렸습니다." });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: err.message });
+  }
+});
+//  글 수정 화면
+router.get("/update/:id", async (req, res) => {
+  let doc = await Anonymous.findOne({
+    _id: mongoose.Types.ObjectId(req.params.id),
+  });
+  res.render("review_update", {
+    doc: doc,
+  });
 });
 module.exports = router;
