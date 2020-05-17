@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.use("/assets", express.static(path.join(__dirname, "public/assets"), { maxAge: "30d" }));
 app.use("/images", express.static(path.join(__dirname, "public/images"), { maxAge: "30d" }));
 app.use("/nm", express.static(path.join(__dirname, "node_modules"), { maxAge: "30d" }));
+app.use("/media", express.static(path.join(__dirname, "media"), { maxAge: "30d" }));
 app.use("/public_js", express.static(path.join(__dirname, "public/javascripts"), { maxAge: "0" }));
 app.use("/public_css", express.static(path.join(__dirname, "public/stylesheets"), { maxAge: "0" }));
 app.use("/temps", express.static(path.join(__dirname, "temps")));
