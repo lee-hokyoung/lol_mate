@@ -29,6 +29,7 @@ app.use("/nm", express.static(path.join(__dirname, "node_modules"), { maxAge: "3
 app.use("/public_js", express.static(path.join(__dirname, "public/javascripts"), { maxAge: "0" }));
 app.use("/public_css", express.static(path.join(__dirname, "public/stylesheets"), { maxAge: "0" }));
 app.use("/temps", express.static(path.join(__dirname, "temps")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
