@@ -2,6 +2,7 @@ const express = require("express");
 const Anonymous = require("../model/anonymous");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require("path");
 const router = express.Router();
 
 //  게시판 조회
@@ -51,7 +52,7 @@ router.post("/register", async (req, res) => {
     //  img파일이 있을 경우 temps 폴더에서 upload 폴더로 이동시켜준다.
     let img_urls = req.body.img_urls;
     if (img_urls) {
-      let token = img_urls[0].split("\\")[2];
+      let token = img_urls[0].split(path.sep)[2];
       for (var i = 0; i < img_urls.length; i++) {
         let isExist = fs.existsSync("./uploads/" + token);
 

@@ -8,6 +8,7 @@ const multer = require("multer");
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
+      console.log("cookie : ", req.cookies);
       let token = req.cookies.ckCsrfToken;
       let isExist = fs.existsSync("./temps/" + token);
       console.log("exist : ", isExist);
@@ -25,7 +26,7 @@ const upload = multer({
 });
 router.post("/anonymous", upload.single("upload"), (req, res) => {
   let file = req.file;
-  res.json({ uploaded: 1, filename: file.originalname, url: path.join("\\", file.path) });
+  res.json({ uploaded: 1, filename: file.originalname, url: path.join("/", file.path) });
 });
 
 module.exports = router;
