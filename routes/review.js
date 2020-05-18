@@ -55,7 +55,6 @@ router.post("/register", async (req, res) => {
       let token = img_urls[0].split(path.sep)[2];
       for (var i = 0; i < img_urls.length; i++) {
         let isExist = fs.existsSync("./uploads/" + token);
-
         if (!isExist) {
           fs.mkdirSync("./uploads/" + token);
         }
@@ -171,7 +170,7 @@ router.patch("/update", async (req, res) => {
      */
     let img_urls = req.body.img_urls;
     if (img_urls) {
-      let token = img_urls[0].split("\\")[2];
+      let token = img_urls[0].split(path.sep)[2];
       for (var i = 0; i < img_urls.length; i++) {
         let isExist = fs.existsSync("./uploads/" + token);
 

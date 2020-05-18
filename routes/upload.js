@@ -8,10 +8,8 @@ const multer = require("multer");
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
-      console.log("cookie : ", req.cookies);
       let token = req.cookies.ckCsrfToken;
       let isExist = fs.existsSync("./temps/" + token);
-      console.log("exist : ", isExist);
       if (!isExist) {
         fs.mkdirSync("./temps/" + token);
       }

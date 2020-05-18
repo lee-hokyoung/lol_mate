@@ -11,3 +11,15 @@
   border-radius: 0;
   font-size: 15px;
 }
+table td,
+table th {
+  white-space: nowrap;
+}
+.section table td input {
+  text-align: center;
+}
+.status-img-wrap p i {
+  color: red;
+  padding: 2.5px 0.5rem;
+  cursor: pointer;
+}

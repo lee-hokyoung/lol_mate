@@ -8,3 +8,4 @@ package.json
 .env
 temps/
 uploads/
+status_imgs/

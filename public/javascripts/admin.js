@@ -21,7 +21,7 @@ function fnLogin() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       let res = JSON.parse(this.response);
       if (res.code === 1) {
-        location.href = "/admin/review";
+        location.href = "/admin";
       } else {
         alert(res.message);
       }
