@@ -30,7 +30,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 5,500원
+                    p #{perGameInfo.perGame.iron}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -44,7 +44,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 5,500원
+                    p #{perGameInfo.perGame.bronze}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -58,7 +58,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 5,500원
+                    p #{perGameInfo.perGame.silver}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -74,11 +74,11 @@ block content
                   .col-3
                     ul.list-group
                       li.list-group-item 
-                        .bg-color(data-color="diamond") 골드 2 ~ 4
-                        p 6,500원
+                        .bg-color(data-color="gold") 골드 2 ~ 4
+                        p #{perGameInfo.perGame.gold[0]}
                       li.list-group-item 
-                        .bg-color(data-color="diamond") 골드 1
-                        p 7,500원
+                        .bg-color(data-color="gold") 골드 1
+                        p #{perGameInfo.perGame.gold[1]}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -95,16 +95,16 @@ block content
                     ul.list-group
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 4
-                        p 9,000원
+                        p #{perGameInfo.perGame.platinum[0]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 3
-                        p 9,000원
+                        p #{perGameInfo.perGame.platinum[1]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 2
-                        p 9,000원
+                        p #{perGameInfo.perGame.platinum[2]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 1
-                        p 11,000원
+                        p #{perGameInfo.perGame.platinum[3]}
 
               li.list-group-item
                 .row.w-100.m-0
@@ -122,16 +122,16 @@ block content
                     ul.list-group
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 4
-                        p 13,000원
+                        p #{perGameInfo.perGame.diamond[0]}
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 3
-                        p 15,000원
+                        p #{perGameInfo.perGame.diamond[1]}
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 2
-                        p 18,000원
+                        p #{perGameInfo.perGame.diamond[2]}
                       li.list-group-item 
                         .bg-color(data-color="diamond") 다이아 1
-                        p.text-nowrap 22,000원
+                        p.text-nowrap #{perGameInfo.perGame.diamond[3]}
               li.list-group-item
                 .row.m-0.w-100
                   .col-md-5.col-4.m-0#master
@@ -163,7 +163,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 8,500원
+                    p #{winGameInfo.winGame.iron}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -177,7 +177,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 8,500원
+                    p #{winGameInfo.winGame.bronze}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -191,7 +191,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 8,500원
+                    p #{winGameInfo.winGame.silver}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -205,7 +205,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 10,000원
+                    p #{winGameInfo.winGame.gold}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -222,16 +222,16 @@ block content
                     ul.list-group
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 4
-                        p 14,000원
+                        p #{winGameInfo.winGame.platinum[0]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 3
-                        p 14,000원
+                        p #{winGameInfo.winGame.platinum[1]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 2
-                        p 16,000원
+                        p #{winGameInfo.winGame.platinum[2]}
                       li.list-group-item 
                         .bg-color(data-color="platinum") 플래티넘 1
-                        p 17,000원
+                        p #{winGameInfo.winGame.platinum[3]}
 
               li.list-group-item
                 .row.w-100.m-0
@@ -246,7 +246,7 @@ block content
                       br
                       strong 1판
                   .col-3
-                    p 상담문의
+                    p #{winGameInfo.winGame.diamond}
                     //- ul.list-group
                     //-   li.list-group-item 
                     //-     .bg-color(data-color="diamond") 다이아 4
@@ -280,7 +280,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 80,000원
+                    p #{rankGameInfo.rankGame.unranked}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -294,7 +294,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 70,000원
+                    p #{rankGameInfo.rankGame.iron}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -308,7 +308,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 70,000원
+                    p #{rankGameInfo.rankGame.bronze}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -322,7 +322,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 70,000원
+                    p #{rankGameInfo.rankGame.silver}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -336,7 +336,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 8 ~ 9만
+                    p #{rankGameInfo.rankGame.gold}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -350,8 +350,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 11 ~ 12만
-
+                    p #{rankGameInfo.rankGame.platinum}
               li.list-group-item
                 .row.w-100.m-0
                   .col-md-3.col-2.m-0
@@ -365,7 +364,7 @@ block content
                       br
                       strong 10판
                   .col-3
-                    p 13만~ 협의
+                    p #{rankGameInfo.rankGame.diamond}
     .container-fluid.p-0
       .section.section-gray#oneLessonWrap
         .container.text-center
@@ -398,7 +397,7 @@ block content
                     h5.text-white.m-0 아이언 &middot; 브론즈 &middot; 실버 &middot; 골드
                 li.list-group-item.flex-column.bg-white
                   p 시간당
-                  h2 20,000원
+                  h2 #{tutorGameInfo.tutorGame.IBS}
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="platinum")
@@ -408,7 +407,7 @@ block content
                     h5.text-white.m-0 플래티넘
                 li.list-group-item.flex-column.bg-white
                   p 시간당
-                  h2 25,000원
+                  h2 #{tutorGameInfo.tutorGame.platinum}
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="diamond")
@@ -418,7 +417,7 @@ block content
                     h5.text-white.m-0 다이아몬드
                 li.list-group-item.flex-column.bg-white
                   p 시간당
-                  h2 25,000원
+                  h2 #{tutorGameInfo.tutorGame.diamond}
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
@@ -428,7 +427,7 @@ block content
                     img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/gold_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 골드보장
-                  h2 200,000원
+                  h2 #{tutorGameInfo.tutorGame.unrankToGold}
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
@@ -438,7 +437,7 @@ block content
                     img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/platinum_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 플레보장
-                  h2 350,000원
+                  h2 #{tutorGameInfo.tutorGame.unrankToPlat}
             .col-md-4
               ul.list-group
                 li.list-group-item.list-header(data-color="unrank")
@@ -448,7 +447,7 @@ block content
                     img.d-block.mx-auto(src='/assets/img/tier-icons/tier-icons/diamond_v.png')
                 li.list-group-item.flex-column.bg-white
                   p 언랭배치 + 다이아보장
-                  h2 550,000원
+                  h2 #{tutorGameInfo.tutorGame.unrankToDia}
           .row
             .col-md-10.mx-auto
               h4.text-danger.text-center (강사분들의 노하우와 비법을 아끼지 않고 최선을 다해 최고로 만들어 드리겠습니다.)

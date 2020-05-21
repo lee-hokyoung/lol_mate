@@ -10,7 +10,6 @@ const upload = multer({
     destination(req, file, cb) {
       let token = req.cookies.ckCsrfToken;
       let isExist = fs.existsSync("./temps/" + token);
-      console.log("exist : ", isExist);
       if (!isExist) {
         fs.mkdirSync("./temps/" + token);
       }
@@ -25,7 +24,7 @@ const upload = multer({
 });
 router.post("/anonymous", upload.single("upload"), (req, res) => {
   let file = req.file;
-  res.json({ uploaded: 1, filename: file.originalname, url: path.join("\\", file.path) });
+  res.json({ uploaded: 1, filename: file.originalname, url: path.join("/", file.path) });
 });
 
 module.exports = router;

@@ -20,41 +20,44 @@ block content
     .container
       .row.section
         .col-md-12.mx-auto
-          table.table
-            colgroup
-              col(width='100' title='No')
-              col(width='auto' title='제목')
-              col(width='200' title='글쓴이')
-              col(width='80' title='조회수')
-              col(width='200' title='작성일시')
-            thead
-              th No
-              th 제목
-              th 글쓴이
-              th 조회수
-              th 작성일시
-            tbody
-              - var rownum = (page - 1) * limit;
-              if(total > 0)
-                each row in list[0].data
-                  - var date = new Date(row.created_at)
+          .table-responsive
+            table.table
+              colgroup
+                col(width='100' title='No')
+                col(width='auto' title='제목')
+                col(width='200' title='글쓴이')
+                col(width='80' title='조회수')
+                col(width='200' title='작성일시')
+              thead
+                th No
+                th 제목
+                th 글쓴이
+                th 조회수
+                th 작성일시
+              tbody
+                - var rownum = (page - 1) * limit;
+                if(total > 0)
+                  each row in list[0].data
+                    - var date = new Date(row.created_at)
+                    tr
+                      td #{++rownum}
+                      td 
+                        a(href='/review/read/' + row._id) #{row.title}
+                      td #{row.writer}
+                      td #{row.hitCount}
+                      td #{date.toLocaleString('ko')}
+                else
                   tr
-                    td #{++rownum}
-                    td 
-                      a(href='/review/read/' + row._id) #{row.title}
-                    td #{row.writer}
-                    td #{row.hitCount}
-                    td #{date.toLocaleString('ko')}
-              else
-                tr
-                  td(colspan='4') 등록된 글이 없습니다.
-          .d-flex.justify-content-between
-            form(method='POST', action='/review/list')
-              .input-group
-                input.form-control(type='text', name='searchText', value=searchText)
-                .input-group-append
-                  button.input-group-text(name='btnSearch') 검색
-            a.mb-auto(href='/review/register', data-role='button') 글쓰기
+                    td(colspan='5') 등록된 글이 없습니다.
+          .row
+            .col-8.col-md-6
+              form(method='POST', action='/review/list')
+                .input-group
+                  input.form-control(type='text', name='searchText', value=searchText)
+                  .input-group-append
+                    button.input-group-text.bg-dark.text-white(name='btnSearch') 검색
+            .col-4.col-md-6.text-right
+              a.mb-auto(href='/review/register', data-role='button') 글쓰기
           .page-wrap
             nav(aria-label="Page")
               ul.pagination.justify-content-center

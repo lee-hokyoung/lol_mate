@@ -1,0 +1,25 @@
+.admin-wrap {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+.login-wrap {
+  max-width: 400px;
+  margin: 3rem auto;
+}
+.login-wrap button {
+  width: 100%;
+  border-radius: 0;
+  font-size: 15px;
+}
+table td,
+table th {
+  white-space: nowrap;
+}
+.section table td input {
+  text-align: center;
+}
+.status-img-wrap p i {
+  color: red;
+  padding: 2.5px 0.5rem;
+  cursor: pointer;
+}

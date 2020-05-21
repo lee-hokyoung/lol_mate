@@ -1,0 +1,47 @@
+db.price.insertOne({perGame:{
+    iron:'5,500원', 
+    bronze:'5500', 
+    silver:'5500', 
+    gold:['6500', '7500'],
+    platinum:['9000','9000','9000','11000'], 
+    diamond:['13000','15000','18000','22000']
+}});
+
+db.price.insertOne({winGame:{
+    iron:'8500', 
+    bronze:'8500', 
+    silver:'8500', 
+    gold:'10000',
+    platinum:['14000','14000','16000','17000'], 
+    diamond:'상담문의'
+}})
+
+db.price.insertOne({rankGame:{
+    unranked:'80000', 
+    iron:'70000', 
+    bronze:'70000', 
+    silver:'70000', 
+    gold:'8 ~ 9만',
+    platinum:'11 ~ 12만', 
+    diamond:'13만~ 협의'
+}})
+
+db.price.insertOne({tutorGame:{
+    IBS:'20000', 
+    platinum:'25000', 
+    diamond:'25000', 
+    unrankToGold:'200000',
+    unrankToPlat:'350000',
+    unrankToDia:'550000'
+}})
+
+db.status.insert({img_url:[
+    '/status_imgs/status1.jpg',
+    '/status_imgs/status2.jpg',
+    '/status_imgs/status3.jpg',
+    '/status_imgs/status4.jpg',
+    '/status_imgs/status5.jpg',
+    '/status_imgs/status_3.jpg',
+    '/status_imgs/status_4.png',
+    '/status_imgs/status_5.png',
+]})

@@ -1,0 +1,198 @@
+.section.bg-light.pt-3
+  h3 가격표 수정
+  .row
+    //  판수제 강의 가격표 수정
+    .col-md-6
+      .d-flex.justify-content-between
+        h5.text-primary 판수제 강의
+        button.btn.btn-success.btn-link(onclick='fnSaveGame("perGame")') 저장
+      table.table
+        colgroup
+          col(width='100')
+          col(width='200')
+          col(width='100')
+        thead.thead-dark
+          th 등급
+          th 내용
+          th 가격
+        tbody(data-title='perGame')
+          tr
+            td 아이언
+            td 판수제 강의 1판
+            td
+              input.form-control(type='text', name='iron', value=perGameInfo.perGame.iron)
+          tr
+            td 브론즈
+            td 판수제 강의 1판
+            td
+              input.form-control(type='text', name='bronze', value=perGameInfo.perGame.bronze)
+          tr
+            td 실버 
+            td 판수제 강의 1판
+            td
+              input.form-control(type='text', name='silver', value=perGameInfo.perGame.silver)
+          tr
+            td 골드2 ~ 4
+            td 판수제 강의 1판
+            td
+              input.form-control(type='text', name='gold', value=perGameInfo.perGame.gold[0], data-array='true')
+          tr
+            td 골드1
+            td 판수제 강의 1판
+            td
+              input.form-control(type='text', name='gold', value=perGameInfo.perGame.gold[1], data-array='true')
+          - var idx = 4;
+          each item in perGameInfo.perGame.platinum
+            tr
+              td 플래티넘#{idx--}
+              td 판수제 강의 1판
+              td
+                input.form-control(type='text', name='platinum', value=item, data-array='true')
+          - idx = 4
+          each item in perGameInfo.perGame.diamond
+            tr
+              td 다이아#{idx--}
+              td 판수제 강의 1판
+              td
+                input.form-control(type='text', name='diamond', value=item, data-array='true')
+    //- 승수 보장제 강의
+    .col-md-6
+      .d-flex.justify-content-between
+        h5.text-primary 승수보장제 강의
+        button.btn.btn-success.btn-link(onclick='fnSaveGame("winGame")') 저장
+      table.table
+        colgroup
+          col(width='100')
+          col(width='200')
+          col(width='100')
+        thead.thead-dark
+          th 등급
+          th 내용
+          th 가격
+        tbody(data-title='winGame') 
+          tr
+            td 아이언
+            td 승수보장제 강의 1판
+            td
+              input.form-control(type='text', name='iron', value=winGameInfo.winGame.iron)
+          tr
+            td 브론즈
+            td 승수보장제 강의 1판
+            td
+              input.form-control(type='text', name='bronze', value=winGameInfo.winGame.bronze)
+          tr
+            td 실버 
+            td 승수보장제 강의 1판
+            td
+              input.form-control(type='text', name='silver', value=winGameInfo.winGame.silver)
+          tr
+            td 골드
+            td 승수보장제 강의 1판
+            td
+              input.form-control(type='text', name='gold', value=winGameInfo.winGame.gold)
+          - var idx = 4;
+          each item in winGameInfo.winGame.platinum
+            tr
+              td 플래티넘#{idx--}
+              td 승수보장제 강의 1판
+              td
+                input.form-control(type='text', name='platinum', value=item)
+          tr
+            td 다이아몬드
+            td 승수보장제 강의 1판
+            td
+              input.form-control(type='text', name='diamond', value=winGameInfo.winGame.diamond)  
+  .row
+    .col-md-6
+      .d-flex.justify-content-between
+        h5.text-primary 배치고사 강의
+        button.btn.btn-success.btn-link(onclick='fnSaveGame("rankGame")') 저장
+      table.table
+        colgroup
+          col(width='100')
+          col(width='200')
+          col(width='100')
+        thead.thead-dark
+          th 등급
+          th 내용
+          th 가격
+        tbody(data-title='rankGame')
+          tr
+            td 언랭
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='unranked', value=rankGameInfo.rankGame.unranked)
+          tr
+            td 아이언
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='iron', value=rankGameInfo.rankGame.iron)
+          tr
+            td 브론즈
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='bronze', value=rankGameInfo.rankGame.bronze)
+          tr
+            td 실버 
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='silver', value=rankGameInfo.rankGame.silver)
+          tr
+            td 골드
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='gold', value=rankGameInfo.rankGame.gold)
+          tr
+            td 플래티넘
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='platinum', value=rankGameInfo.rankGame.platinum)
+          tr
+            td 다이아몬드
+            td 배치고사 강의 10판
+            td
+              input.form-control(type='text', name='diamond', value=rankGameInfo.rankGame.diamond)   
+    .col-md-6
+      .d-flex.justify-content-between
+        h5.text-primary 1:1 전문강의
+        button.btn.btn-success.btn-link(onclick='fnSaveGame("tutorGame")') 저장
+      table.table
+        colgroup
+          col(width='100')
+          col(width='200')
+          col(width='100')
+        thead.thead-dark
+          th 등급
+          th 내용
+          th 가격
+        tbody(data-title='tutorGame')
+          tr
+            td IBS GOLD
+            td 시간당
+            td
+              input.form-control(type='text', name='IBS', value=tutorGameInfo.tutorGame.IBS)
+          tr
+            td 플래티넘
+            td 시간당
+            td
+              input.form-control(type='text', name='platinum', value=tutorGameInfo.tutorGame.platinum)
+          tr
+            td 다이아몬드
+            td 시간당
+            td
+              input.form-control(type='text', name='diamond', value=tutorGameInfo.tutorGame.diamond)
+          tr
+            td 언랭배치 + 골드보장 
+            td 
+            td
+              input.form-control(type='text', name='unrankToGold', value=tutorGameInfo.tutorGame.unrankToGold)
+          tr
+            td 언랭배치 + 플래보장
+            td 
+            td
+              input.form-control(type='text', name='unrankToPlat', value=tutorGameInfo.tutorGame.unrankToPlat)
+          tr
+            td 언랭배치 + 다이아보장
+            td 
+            td
+              input.form-control(type='text', name='unrankToDia', value=tutorGameInfo.tutorGame.unrankToDia)              

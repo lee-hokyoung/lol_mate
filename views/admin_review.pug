@@ -1,0 +1,93 @@
+extends layout
+block append_css
+  link(href='/public_css/admin.css', rel='stylesheet')
+  link(href='/public_css/admin_review.css', rel='stylesheet')
+block content
+  - var metadata = list[0].metadata[0];
+  - var total = metadata ? metadata.total : 0;
+  - var page = metadata ? metadata.page : 1;
+  - var limit = metadata ? metadata.limit : 10;
+  - var page_size = Math.ceil(total / limit);
+  - var page_group_max = 10;
+  - var curr_page_group = Math.ceil(page / page_group_max);
+  - var start_page = (curr_page_group - 1) * page_group_max + 1;
+  - var end_page = curr_page_group * page_group_max ;
+  .admin-wrap.bg-white
+    .container-fluid
+      table.table
+        colgroup
+          col(width='100' title='No')
+          col(width='auto' title='제목')
+          col(width='200' title='글쓴이')
+          col(width='80' title='조회수')
+          col(width='200' title='작성일시')
+          col(width='100', title='관리버튼')
+        thead
+          th No
+          th 제목
+          th 글쓴이
+          th 조회수
+          th 작성일시
+          th
+        tbody
+          - var rownum = (page - 1) * limit;
+          if(total > 0)
+            each row in list[0].data
+              - var date = new Date(row.created_at)
+              tr
+                td #{++rownum}
+                td 
+                  a(href='/review/read/' + row._id) #{row.title}
+                td #{row.writer}
+                td #{row.hitCount}
+                td #{date.toLocaleString('ko')}
+                td 
+                  button.btn.btn-link.btn-danger.m-0(data-role='deleteReview' data-id=row._id)
+                    i.fa.fa-remove
+          else
+            tr
+              td(colspan='4') 등록된 글이 없습니다.
+      .page-wrap
+        nav(aria-label="Page")
+          ul.pagination.justify-content-center
+            if(start_page > 1)
+              li.page-item
+                a.page-link(href="#", data-page=start_page - 1,  aria-label="Previous")
+                  span(aria-hidden="true") &laquo;
+                  span.sr-only Previous
+            - var p = start_page - 1;
+            - var last = end_page < page_size ? end_page : page_size
+            while p < last
+              li.page-item(class=page==++p?'active':'')
+                a.page-link(href="#", data-page=p) !{p}
+            if(end_page < page_size)
+              li.page-item
+                a.page-link(href="#", data-page=end_page + 1, aria-label="Next")
+                  span(aria-hidden="true") &raquo;
+                  span.sr-only Next
+      
+      //  가격표 수정
+      .section
+        h5 가격표 수정
+        .row
+          .col-md-6
+            h6 판수제 강의
+            table.table
+              colgroup
+                col(width='60')
+                col(width='')
+              thead
+                th 등급
+                th 내용
+                th 가격
+              tbody 
+                td
+                  input.form-control(type='text', name='perGameIRON')
+                td
+                  input.form-control(type='text', name='perGameIRON')
+                td
+                  input.form-control(type='text', name='perGameIRON')
+              
+
+block append_js
+  script(src='/public_js/admin_review.js')

@@ -2,6 +2,7 @@ const express = require("express");
 const Anonymous = require("../model/anonymous");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require("path");
 const router = express.Router();
 
 //  게시판 조회
@@ -51,11 +52,9 @@ router.post("/register", async (req, res) => {
     //  img파일이 있을 경우 temps 폴더에서 upload 폴더로 이동시켜준다.
     let img_urls = req.body.img_urls;
     if (img_urls) {
-      let token = img_urls[0].split("\\")[2];
+      let token = img_urls[0].split(path.sep)[2];
       for (var i = 0; i < img_urls.length; i++) {
         let isExist = fs.existsSync("./uploads/" + token);
-        console.log("is exist : ", isExist);
-
         if (!isExist) {
           fs.mkdirSync("./uploads/" + token);
         }
@@ -63,7 +62,6 @@ router.post("/register", async (req, res) => {
           if (err) {
             console.error("err : ", err);
           }
-          console.log("i : ", i);
         });
       }
     }
@@ -155,5 +153,61 @@ router.get("/update/:id", async (req, res) => {
   res.render("review_update", {
     doc: doc,
   });
+});
+//  글 수정
+router.patch("/update", async (req, res) => {
+  try {
+    let isPass = await Anonymous.findOne({
+      _id: mongoose.Types.ObjectId(req.body.id),
+      password: req.body.password,
+    });
+    if (!isPass) return res.json({ code: 0, message: "수정실패! 비밀번호가 틀렸습니다." });
+    /**
+     *  img 파일이 새로 등록될 경우 -> img src 가 temps 로 시작함.
+     *  기존에 업로드 되어있는 이미지의 경우 img src 는 uploads 로 시작됨
+     *  즉, temps 로 시작되는 이미지 경로만 temps -> uploads로 이동시켜야 함.
+     *  그리고 새로 등록된 이미지의 경우 토큰 정보가 다를 수 있음.
+     */
+    let img_urls = req.body.img_urls;
+    if (img_urls) {
+      let token = img_urls[0].split(path.sep)[2];
+      for (var i = 0; i < img_urls.length; i++) {
+        let isExist = fs.existsSync("./uploads/" + token);
+
+        if (!isExist) {
+          fs.mkdirSync("./uploads/" + token);
+        }
+        fs.rename("./" + img_urls[i], "./" + img_urls[i].replace("temps", "uploads"), (err) => {
+          if (err) {
+            console.error("err : ", err);
+          }
+        });
+      }
+    }
+    //  content 에서 temps를 upload로 바꿔준다
+    let new_content = req.body.content
+      .split("\n")
+      .map((v) => {
+        if (v.indexOf("<img") > -1) {
+          return v.replace("temps", "uploads");
+        } else return v;
+      })
+      .join("\n");
+    req.body.content = new_content;
+    let result = await Anonymous.updateOne(
+      {
+        _id: mongoose.Types.ObjectId(req.body.id),
+        password: req.body.password,
+      },
+      { $set: req.body }
+    );
+    if (result.n === 1) {
+      res.json({ code: 1, message: "정상적으로 수정했습니다." });
+    } else {
+      res.json({ code: 0, message: "수정 실패! 비밀번호가 틀렸습니다." });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: err.message });
+  }
 });
 module.exports = router;

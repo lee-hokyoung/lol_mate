@@ -1,0 +1,20 @@
+.section.pt-3
+  h3 작업현황
+  .row
+    .col-md-6.py-3
+      h5.text-primary.m-0 작업현황 추가
+      input(type='file', name='status', multiple)
+      button.btn.btn-primary.btn-sm(onclick='fnUploadStatus()') 등록
+      p(style='font-size:13px') 파일 업로드 방법 : 파일 선택 후 등록 버튼 클릭
+      input(type='hidden', name='path')
+    .col-md-6.py-3
+      h5.text-primary.m-0 작업현황 삭제
+      .status-img-wrap
+        each item in status_imgs.img_url
+          p.m-0 #{item.replace("/status_imgs/","")}
+            i.fa.fa-remove(data-url=item)
+  h5.text-primary.m-0 작업현황 리스트
+  .row
+    each item in status_imgs.img_url
+      .col-md-4.py-3
+        img.w-100(src=item)

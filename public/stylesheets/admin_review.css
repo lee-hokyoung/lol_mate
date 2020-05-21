@@ -1,0 +1,8 @@
+table {
+  text-align: center;
+}
+table.table > tbody > tr > td,
+table.table td button {
+  padding: 0.25rem;
+  font-size: 13px;
+}

@@ -3,13 +3,14 @@
 }
 a[data-role="button"],
 .input-group button[name="btnSearch"] {
-  background-color: #9c27b0;
-  color: white;
+  /* background-color: #9c27b0; */
+  /* color: white; */
   cursor: pointer;
 }
 table th,
 table td {
   text-align: center;
+  white-space: nowrap;
 }
 a[data-role="button"] {
   padding: 6px 15px;
@@ -32,4 +33,7 @@ a[data-role="button"] {
 }
 .modal-footer button:last-child {
   border-bottom-right-radius: 0.3rem;
+}
+input[name="searchText"] {
+  max-width: 200px;
 }
