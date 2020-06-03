@@ -1,3 +1,4 @@
+// 배경음악 재생 관련
 const sources = [
   "/media/main1.mp3",
   "/media/main2.mp3",
@@ -6,14 +7,15 @@ const sources = [
   "/media/main5.mp3",
   "/media/main6.mp3",
 ];
-let howls = {};
-sources.forEach(function (v, i) {
-  howls[i] = new Howl({ src: v });
-});
-
+// let howls = {};
+// sources.forEach(function (v, i) {
+//   howls[i] = new Howl({ src: v });
+// });
 document.addEventListener("DOMContentLoaded", function () {
+  if (location.pathname === "/review/list") return false;
   let rnd = Math.floor(Math.random() * sources.length);
-  let sound = howls[rnd];
+  let sound = new Howl({ src: sources[rnd] });
+  // let sound = howls[rnd];
   sound.once("load", function () {
     let isPlay = localStorage.getItem("play");
     if (isPlay === "false") {
