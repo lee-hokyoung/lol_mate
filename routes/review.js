@@ -13,7 +13,7 @@ router.get("/read/:doc_id", async (req, res) => {
     { $inc: { hitCount: 1 } }
   );
   let doc = await Anonymous.findOne({ _id: mongoose.Types.ObjectId(req.params.doc_id) });
-  res.render("review_read", { title: "동종업계 최강 롤메이트 - 후기게시판", doc: doc });
+  res.render("review_read", { title: `${process.env.TITLE} - 후기게시판`, doc: doc });
 });
 //  게시판 리스트 조회
 router.all("/list", async (req, res) => {
@@ -37,14 +37,14 @@ router.all("/list", async (req, res) => {
     },
   ]);
   res.render("review_list", {
-    title: "동종업계 최강 롤메이트 - 후기게시판",
+    title: `${process.env.TITLE} - 후기게시판`,
     list: list,
     searchText: searchText,
   });
 });
 //  글쓰기 등록 화면
 router.get("/register", (req, res) => {
-  res.render("review_register", { title: "동종업계 최강 롤메이트 - 후기게시판" });
+  res.render("review_register", { title: `${process.env.TITLE} - 후기게시판` });
 });
 //  글쓰기 등록
 router.post("/register", async (req, res) => {

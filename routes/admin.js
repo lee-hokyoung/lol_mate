@@ -69,7 +69,7 @@ router.get("/", middle.isAdmin, async (req, res) => {
   //  작업현황 정보
   let status_imgs = await Status.findOne({});
   res.render("admin_dashboard", {
-    title: "동종업계 최강 롤메이트 - 관리자 화면",
+    title: "롤메이트 - 관리자 화면",
     list: list,
     isAdmin: true,
     perGameInfo: perGameInfo,
