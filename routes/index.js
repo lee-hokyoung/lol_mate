@@ -28,8 +28,6 @@ router.get("/qna", (req, res) => {
 });
 router.get("/status", async (req, res) => {
   let list = await Status.findOne({});
-  console.log("list : ", list);
   res.render("status", { title: "동종업계 최강 롤메이트 - 작업현황", list: list });
 });
-
 module.exports = router;

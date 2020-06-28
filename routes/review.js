@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
-
 //  게시판 조회
 router.get("/read/:doc_id", async (req, res) => {
   //  조회수 + 1

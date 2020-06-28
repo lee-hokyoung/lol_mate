@@ -1,3 +1,4 @@
+// 배경음악 재생 관련
 const sources = [
   "/media/main1.mp3",
   "/media/main2.mp3",
@@ -6,17 +7,23 @@ const sources = [
   "/media/main5.mp3",
   "/media/main6.mp3",
 ];
-let howls = {};
-sources.forEach(function (v, i) {
-  howls[i] = new Howl({ src: v });
-});
-
+// let howls = {};
+// sources.forEach(function (v, i) {
+//   howls[i] = new Howl({ src: v });
+// });
 document.addEventListener("DOMContentLoaded", function () {
+  if (location.pathname === "/review/list") return false;
   let rnd = Math.floor(Math.random() * sources.length);
-  let sound = howls[rnd];
-  console.log("rnd : ", rnd);
+  let sound = new Howl({ src: sources[rnd] });
+  // let sound = howls[rnd];
   sound.once("load", function () {
-    sound.play();
+    let isPlay = localStorage.getItem("play");
+    if (isPlay === "false") {
+      document.querySelector("#audio-wrap").dataset.play = "false";
+    } else {
+      sound.play();
+      document.querySelector("#audio-wrap").dataset.play = "true";
+    }
     document.querySelector("#audio-wrap").classList.remove("d-none");
   });
   document.querySelectorAll("#audio-wrap i").forEach(function (i) {
@@ -24,8 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
       let audio = document.querySelector("#audio-wrap");
       let play = audio.dataset.play;
       audio.dataset.play = play === "false";
-      if (play === "false") sound.play();
-      else sound.pause();
+      if (play === "false") {
+        sound.play();
+        localStorage.setItem("play", true);
+      } else {
+        sound.pause();
+        localStorage.setItem("play", false);
+      }
     });
   });
 });
